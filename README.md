@@ -37,17 +37,7 @@ return 0;
 ~~~
 
 
-
-
-
-
-
-
-
-
-
-
-##OUTPUT
+OUTPUT
 <img width="775" height="339" alt="image" src="https://github.com/user-attachments/assets/63598d0d-24bf-4d34-9a84-9ac8696ddfe7" />
 
 
@@ -60,6 +50,38 @@ return 0;
 
 ## C Program to execute Linux system commands using Linux API system calls exec() , exit() , wait() family
 
+~~~
+printf("Running ps with execl\n");
+if (fork() == 0) {
+    execl("ps", "ps", "-f", NULL);
+    perror("execl failed");
+    exit(1);
+}
+wait(&status);
+
+if (WIFEXITED(status)) {
+    printf("Child exited with status: %d\n", WEXITSTATUS(status));
+} else {
+    printf("Child did not exit successfully\n");
+}
+
+printf("Running ps with execlp (without full path)\n");
+if (fork() == 0) {
+    execlp("ps", "ps", "-f", NULL);
+    perror("execlp failed");
+    exit(1);
+}
+wait(&status);
+
+if (WIFEXITED(status)) {
+    printf("Child exited for execlp with status: %d\n", WEXITSTATUS(status));
+} else {
+    printf("Child did not exit successfully\n");
+}
+
+printf("Done.\n");
+return 0;
+~~~
 
 
 
@@ -84,8 +106,9 @@ return 0;
 
 
 
+OUTPUT
+<img width="1021" height="504" alt="image" src="https://github.com/user-attachments/assets/d169f00c-3ebe-4ff5-a37e-7729b9b5463e" />
 
-##OUTPUT
 
 
 
