@@ -24,7 +24,17 @@ Test the C Program for the desired output.
 # PROGRAM:
 
 ## C Program to create new process using Linux API system calls fork() and getpid() , getppid() and to print process ID and parent Process ID using Linux API system calls
-
+~~~
+if (pid == 0) {
+    printf("I am child, my PID is %d\n", getpid());
+    printf("My parent PID is %d\n", getppid());
+    sleep(2);   // keep child alive
+} else {
+    printf("I am parent, my PID is %d\n", getpid());
+    wait(NULL);
+}
+return 0;
+~~~
 
 
 
@@ -38,6 +48,8 @@ Test the C Program for the desired output.
 
 
 ##OUTPUT
+<img width="775" height="339" alt="image" src="https://github.com/user-attachments/assets/63598d0d-24bf-4d34-9a84-9ac8696ddfe7" />
+
 
 
 
